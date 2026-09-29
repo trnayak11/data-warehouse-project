@@ -1,0 +1,22 @@
+use master;
+GO
+IF EXISTS (SELECT 1 from sys.databases WHERE name = 'DataWarehouse')
+BEGIN
+	ALTER DATABASE DataWarehouse SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+	DROP DATABASE DataWarehouse;
+END
+ELSE
+BEGIN
+	PRINT 'NOT EXIST'
+END;
+GO
+CREATE DATABASE DataWarehouse;
+GO
+USE DataWarehouse;
+GO
+CREATE SCHEMA bronze;
+GO
+CREATE SCHEMA silver;
+GO
+CREATE SCHEMA GOLD;
+GO
